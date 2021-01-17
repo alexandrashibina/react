@@ -1,0 +1,44 @@
+/* можно хранить глобальные стили, 
+а под каждую компоненту - 
+создавать свой отдельный файл стилей */
+
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  background-color: lightgray;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+ul, li {
+  list-style: none;
+  display: flex;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.logo-item {
+  width: 156px;
+  margin: 0;
+  padding: 0;
+  display: block;
+  flex-shrink: 0;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  background-image: url(https://boring-mcclintock-9267da.netlify.app/assets/login-background.jpg) ;
+  overflow: hidden;
+}
