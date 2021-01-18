@@ -7,23 +7,23 @@ import {RegForm} from './RegForm.jsx'
 import './App.css';
 
 
-const PAGES = {
-  map: <Map/>, 
-  profile: <Profile/>, 
-  login: <Login/>, 
-  reg: <RegForm/>, 
-};
 
 class App extends Component {
   state = {currentPage: "map"}
+  
+  PAGES = {
+    map: <Map/>, 
+    profile: <Profile/>, 
+    login: <Login onLogin={() => this.navigateTo("map")} onRegister={() => this.navigateTo("reg")}/>, 
+    reg: <RegForm/>, 
+  };
 
   navigateTo = (page) => {
     this.setState({currentPage: page})
   }
 
-  render () {
-   return (
-    <div className="wrapper">
+  renderHeader = () => {
+    return (
       <header className="header" id="header">
         {this.hideHeader}
         <div className="header__logo">
@@ -37,9 +37,16 @@ class App extends Component {
           </ul>
         </nav>
       </header>
+    )
+  }
+
+  render () {
+   return (
+    <div className="wrapper">
+      {this.state.currentPage !== "login" && this.renderHeader()}
       <main> 
         <section>
-          {PAGES[this.state.currentPage]}
+          {this.PAGES[this.state.currentPage]}
         </section>
       </main>
     </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg'
 
-export const Login = () => {
+export const Login = (props) => {
     
     return (
         <div className="container"> 
@@ -13,7 +13,7 @@ export const Login = () => {
                     <div className="form__header">Войти</div>
                     <div className="form__content">
                         <div className="form__text">Новый пользователь?</div>
-                        <button className="form__link" onClick={() => {this.navigateTo("reg")}}>Зарегистрируйтесь</button>
+                        <button className="form__link" onClick={props.onRegister}>Зарегистрируйтесь</button>
                     </div>
                     <form className="form__input">
                         <label htmlFor="email">Email:</label>
@@ -21,7 +21,7 @@ export const Login = () => {
                         <label htmlFor="password">Password:</label>
                         <input id="password" className="input" type="password" name="password" size="28" placeholder="Пароль"/>                      
                     </form>
-                        <button className="button" onClick={() => {this.navigateTo("map")}}>Войти</button>
+                        <button className="button" onClick={props.onLogin}>Войти</button>
                 </div>
             </div>
         </div>
