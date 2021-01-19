@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg'
 
-export const RegForm = () => {
+export const RegForm = (props) => {
     return (
         <div className="container"> 
             <div className="login">
@@ -9,14 +9,14 @@ export const RegForm = () => {
                     <img src={logo} className="logo-item logo-item--white" alt="logo" />
                 </div>
                 <div className="form">
-                    <div className="form__header">Войти</div>
+                    <div className="form__header">Зарегистрироваться</div>
                     <form className="form__input">
                         <label htmlFor="email">Email:</label>
                         <input id="email" className="input" type="email" name="email" size="28" placeholder="Имя пользователя"/>
                         <label htmlFor="password">Password:</label>
                         <input id="password" className="input" type="password" name="password" size="28" placeholder="Пароль"/>                      
                     </form>
-                        <button className="button" onClick={() => {this.navigateTo("map")}}>Войти</button>
+                        <button className="button" onClick={props.onLogin}>Зарегистрироваться</button>
                 </div>
             </div>
         </div>

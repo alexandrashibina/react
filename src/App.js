@@ -12,10 +12,10 @@ class App extends Component {
   state = {currentPage: "map"}
   
   PAGES = {
-    map: <Map/>, 
-    profile: <Profile/>, 
+    map: <Map onProfile={() => this.navigateTo("profile")}/>, 
+    profile: <Profile onLogin={() => this.navigateTo("map")}/>, 
     login: <Login onLogin={() => this.navigateTo("map")} onRegister={() => this.navigateTo("reg")}/>, 
-    reg: <RegForm/>, 
+    reg: <RegForm onLogin={() => this.navigateTo("map")}/>, 
   };
 
   navigateTo = (page) => {
@@ -43,7 +43,7 @@ class App extends Component {
   render () {
    return (
     <div className="wrapper">
-      {this.state.currentPage !== "login" && this.renderHeader()}
+      {this.state.currentPage !== "login"?  this.state.currentPage !== "reg"? this.renderHeader() : null : null}
       <main> 
         <section>
           {this.PAGES[this.state.currentPage]}

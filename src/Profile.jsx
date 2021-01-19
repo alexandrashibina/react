@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Profile = () => {
+export const Profile = (props) => {
   return (
       <div className="container"> 
           <div className="login">
@@ -18,12 +18,10 @@ export const Profile = () => {
                         <input className="input" type="text" placeholder="Имя владельца"/>
                         <input className="input" type="text" placeholder="CVC"/>
                       </div>
-                      <button className="button" onClick={() => {this.navigateTo("map")}}>Войти</button>
+                      <button className="button" onClick={props.onLogin}>Войти</button>
                   </form>
               </div>
           </div>
       </div>
   );
 } 
-
-export default Profile;
