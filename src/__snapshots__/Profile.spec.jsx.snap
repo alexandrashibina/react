@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Profile renders correctly 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="login"
+  >
+    <div
+      className="form"
+    >
+      <div
+        className="profile__content"
+      >
+        <div
+          className="form__header profile"
+        >
+          Профиль
+        </div>
+        <div
+          className="form__text profile"
+        >
+          Способ оплаты
+        </div>
+      </div>
+      <form
+        className="form__input profile__input"
+      >
+        <div
+          className="form__input-container"
+        >
+          <div
+            className="column"
+          >
+            <span
+              className="mc-icon"
+            >
+              <img
+                alt="MC"
+                className="mc-img"
+                src="mc.svg"
+              />
+            </span>
+            <input
+              className="input"
+              placeholder="Номер карты"
+              type="text"
+            />
+            <input
+              className="input"
+              placeholder="01/21"
+              type="text"
+            />
+          </div>
+          <div
+            className="column"
+          >
+            <input
+              className="input"
+              placeholder="Имя владельца"
+              type="text"
+            />
+            <input
+              className="input"
+              placeholder="CVC"
+              type="text"
+            />
+          </div>
+        </div>
+        <button
+          className="button"
+          onClick={[Function]}
+        >
+          Сохранить данные
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+`;

@@ -34,7 +34,7 @@
 .block {
   background-color: #fff;
   position: absolute;
-  top: 15%;
+  top: 25%;
   left: 2%;
   padding: 50px;
   max-width: 20%;
@@ -89,6 +89,7 @@
 
 .form {
   min-height: 64px;
+  max-width: 50%;
   background-color: white;
   margin: 0;
   border-radius: 4px;
@@ -96,36 +97,23 @@
   box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12);
 }
 
-.form__input {
-  display: flex;
-  flex-direction: column;
-}
-
-.input {
-  margin-bottom: 20px;
-  background-color: transparent;
-  border: 0;
-  border-bottom: 1px solid grey;
-  padding: 15px 5px;
-  cursor: pointer;
-}
-
-.input:focus {
-  outline: transparent;
-  color: red;
-  border-bottom: 1px solid red;
-}
-
-
 .form__header {
   font-size: 35px;
   font-weight: 500;
   margin-bottom: 30px;
 }
 
+.profile {
+  margin: 0;
+}
+
 .form__content {
   display: flex;
   margin-bottom: 30px;
+}
+
+.profile__content {
+  text-align: center;
 }
 
 .form__text {
@@ -140,3 +128,51 @@
   cursor: pointer;
 }
 
+.form__input {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile__input {
+  align-items: center;
+}
+
+.form__input-container {
+  display: flex; 
+  margin-bottom: 5%;
+}
+
+.input {
+  margin-bottom: 20px;
+  width: 100%;
+  background-color: transparent;
+  border: 0;
+  border-bottom: 1px solid grey;
+  padding: 15px 5px;
+  cursor: pointer;
+  flex: 2;
+}
+
+.input:focus {
+  outline: transparent;
+  color: red;
+  border-bottom: 1px solid red;
+}
+
+.column {
+  position: relative;
+  border: 1px solid lightgrey;  
+  margin: 2%;    
+  padding: 5%; 
+  box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12);
+}
+
+.mc-icon {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+}
+
+.mc-img {
+  width: 32px;
+}

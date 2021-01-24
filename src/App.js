@@ -1,44 +1,57 @@
 import React, { Component } from 'react';
-import logo from './logo.svg'
-import {Map} from './Map.jsx'
-import {Login} from './Login.jsx'
-import {Profile} from './Profile.jsx'
-import {RegForm} from './RegForm.jsx'
+import logo from './logo.svg';
+import {Map} from './Map.jsx';
+import {LoginWithAuth} from './Login.jsx';
+import {ProfileWithAuth} from './Profile.jsx';
+import {RegFormWithAuth} from './RegForm.jsx';
+import {withAuth} from './AuthContext';
+import PropTypes from 'prop-types'
 import './App.css';
-
-
 
 class App extends Component {
   state = {currentPage: "map"}
   
   PAGES = {
-    map: <Map onProfile={() => this.navigateTo("profile")}/>, 
-    profile: <Profile onLogin={() => this.navigateTo("map")}/>, 
-    login: <Login onLogin={() => this.navigateTo("map")} onRegister={() => this.navigateTo("reg")}/>, 
-    reg: <RegForm onLogin={() => this.navigateTo("map")}/>, 
+    map: (props) => <Map {...props}/>, 
+    profile: (props) => <ProfileWithAuth {...props}/>, 
+    login: (props) => <LoginWithAuth {...props}/>, 
+    reg: (props) => <RegFormWithAuth {...props}/>, 
   };
 
   navigateTo = (page) => {
-    this.setState({currentPage: page})
-  }
+    if (this.props.isLoggedIn) {
+      this.setState({currentPage: page});
+    }else{
+      this.setState({currentPage: "login"});
+    }
+  };
+
+  unauthenticate = (event) => {
+    event.preventDefault();
+    this.props.logOut();
+    this.props.navigate("login");
+  };
 
   renderHeader = () => {
     return (
-      <header className="header" id="header">
-        {this.hideHeader}
-        <div className="header__logo">
-        <img src={logo} className="logo-item" alt="logo" />
-        </div>
-        <nav className="header__menu">
-          <ul>
-            <li><button className="header__menu-item" onClick={() => {this.navigateTo("map")}}>Карта</button></li>
-            <li><button className="header__menu-item" onClick={() => {this.navigateTo("profile")}}>Профиль</button></li>
-            <li><button className="header__menu-item" onClick={() => {this.navigateTo("login")}}>Выйти</button></li>
-          </ul>
-        </nav>
-      </header>
+      <div>
+        <header className="header" id="header">
+          {this.hideHeader}
+          <div className="header__logo">
+          <img src={logo} className="logo-item" alt="logo" />
+          </div>
+          <nav className="header__menu">
+            <ul>
+              <li><button className="header__menu-item" onClick={() => {this.navigateTo("map")}}>Карта</button></li>
+              <li><button className="header__menu-item" onClick={() => {this.navigateTo("profile")}}>Профиль</button></li>
+              <li><button className="header__menu-item" onClick={this.unauthenticate}>Выйти</button></li>
+            </ul>
+          </nav>
+        </header>
+      </div>
     )
   }
+
 
   render () {
    return (
@@ -46,7 +59,7 @@ class App extends Component {
       {this.state.currentPage !== "login"?  this.state.currentPage !== "reg"? this.renderHeader() : null : null}
       <main> 
         <section>
-          {this.PAGES[this.state.currentPage]}
+          {this.PAGES[this.state.currentPage]({navigate: this.navigateTo})}
         </section>
       </main>
     </div>
@@ -54,4 +67,8 @@ class App extends Component {
   }
 } 
 
-export default App;
+App.propTypes = {
+  isLoggedIn: PropTypes.bool
+};
+
+export default withAuth(App);
