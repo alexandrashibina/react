@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types'
 import mapboxgl from 'mapbox-gl'
 
 export class Map extends Component {
@@ -42,3 +43,8 @@ export class Map extends Component {
     );
   }
 }
+
+Map.propTypes = {
+  navigate: PropTypes.func,
+  ref: PropTypes.func
+};
