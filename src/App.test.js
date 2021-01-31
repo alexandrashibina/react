@@ -1,27 +1,49 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import { render } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 import renderer from "react-test-renderer";
+import App from './App';
+import { Provider } from 'react-redux';
+import {Link, Router} from 'react-router-dom';
+import { createMemoryHistory} from 'history';
 
-describe('App component', () => {
-  test('renders without cashing', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<App />, div);
-    ReactDOM.unmountComponentAtNode(div);
+jest.mock("./map", () => ({ Map: () => <Map/> }));
+
+describe('App', () => {
+
+  test("renders correctly", () => {
+    const mockStore = {
+      getState: () => ({auth: {isLoggedIn: true}}),
+      subscribe: () => {},
+      dispatch: () => {},
+    };
+    const history = createMemoryHistory();
+    const AppTree = renderer.create(
+      <Router history={history}>
+        <Provider store={mockStore}>
+          <App />
+        </Provider>
+      </Router>
+    ).toJSON();
+    expect(AppTree).toMatchSnapshot();
   });
 
-  it("renders correctly", () => {
-  const tree = renderer.create(<App />).toJSON();
-  expect(tree).toMatchSnapshot();
-  });
-  
   test("opens correct pages when clicked on buttons", () => {
-    const { getByText, container } = render(<App isLoggedIn />);
+    const mockStore = {
+      getState: () => ({auth: {isLoggedIn: true}}),
+      subscribe: () => {},
+      dispatch: () => {},
+    };
+    const history = createMemoryHistory();
+    const {container, getByText} = render(
+      <Router history={history}>
+        <Provider store={mockStore}>
+          <App />
+        </Provider>
+      </Router>
+    );
     fireEvent.click(getByText('Карта'));
-    expect(container).toMatch(<Map/>);
+    expect(container.innerHTML).toMatch(<Map/>);
     fireEvent.click(getByText('Профиль'));
-    expect(container).toMatch(<Profile/>);
+    expect(container.innerHTML).toMatch(<Profile/>);
   });
-
 });

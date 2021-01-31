@@ -1,13 +1,9 @@
 import React, {Component} from 'react';
-import { withAuth } from './AuthContext';
+import {connect} from 'react-redux';
+import { Link } from 'react-router-dom';
 import mc from './mc.svg'
 
 export class Profile extends Component {
-  goToMap = (event) => {
-    event.preventDefault();
-    this.props.navigate("map");
-  };
-
   render() {
     return (
         <div className="container"> 
@@ -29,7 +25,7 @@ export class Profile extends Component {
                     <input className="input" type="text" placeholder="CVC"/>
                   </div>
                 </div>
-                <button className="button" onClick={this.goToMap}>Сохранить данные</button>
+                <Link to="map" className="button" >Сохранить данные</Link>
               </form>
             </div>
           </div>
@@ -38,4 +34,4 @@ export class Profile extends Component {
   }
 } 
 
-export const ProfileWithAuth = withAuth(Profile)
+export const ProfileWitConnect = connect(null,null)(Profile);

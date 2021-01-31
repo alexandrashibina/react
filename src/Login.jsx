@@ -1,33 +1,25 @@
 import React, {Component} from 'react';
-import { withAuth } from './AuthContext';
+import {connect} from 'react-redux';
+import {authenticate} from './actions';
 import PropTypes from 'prop-types'
 import logo from './logo.svg'
+import { Link } from 'react-router-dom';
+
 
 export class Login extends Component {
-    
-    goToMap = (event) => {
-        event.preventDefault();
-        this.props.navigate("map");
-    };
-
-    goToReg = (event) => {
-        event.preventDefault();
-        this.props.navigate("reg");
-    };
 
     authenticate = (event) => {
         event.preventDefault();
-        const {email, password} = event.target;
-        this.props.logIn(email.value, password.value);
-    };
-
+        const { email, password } = event.target;
+        this.props.authenticate(email.value, password.value);
+      };
+    
     render() {
         return (
             <>
                 {this.props.isLoggedIn ? (
                     <p>
-                        You are logged in {" "} 
-                        <button onClick={this.goToMap}>go to map</button>
+                    You are logged in. <Link to="/profile">Go to profile</Link>
                     </p>
                 ) : (
                     <div className="container"> 
@@ -39,7 +31,7 @@ export class Login extends Component {
                                 <div className="form__header">Войти</div>
                                 <div className="form__content">
                                     <div className="form__text">Новый пользователь?</div>
-                                    <button className="form__link" onClick={this.goToReg}>Зарегистрируйтесь</button>
+                                    <Link to="/reg" className="form__link">Зарегистрируйтесь</Link>
                                 </div>
                                 <form onSubmit={this.authenticate} className="form__input">
                                     <label htmlFor="email">Email:</label>
@@ -54,13 +46,15 @@ export class Login extends Component {
                 )}
             </>
         );
-    };
+    }    
 }
 
 Login.propTypes = {
     isLoggedIn: PropTypes.bool,
     logIn: PropTypes.func,
-    navigate: PropTypes.func,
   };
 
-export const LoginWithAuth = withAuth(Login)
+export const LoginWithConnect = connect(
+    (state) => ({isLoggedIn: state.auth.isLoggedIn}),
+    { authenticate }
+)(Login);

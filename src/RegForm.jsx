@@ -1,27 +1,25 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {authenticate} from './actions';
 import logo from './logo.svg'
 import PropTypes from 'prop-types'
-import { withAuth } from './AuthContext';
+import { Link } from 'react-router-dom';
 
 export class RegForm extends Component {
 
-    goToMap = (event) => {
-        event.preventDefault();
-        this.props.navigate("map");
-    };
-
     authenticate = (event) => {
         event.preventDefault();
-        const {email, password} = event.target;
-        this.props.logIn(email.value, password.value);
+        const { email, password } = event.target;
+        this.props.authenticate(email.value, password.value);
     };
+
     render() {
         return (
             <>
                 {this.props.isLoggedIn ? (
                     <p>
                         You are registered {" "} 
-                        <button onClick={this.goToMap}>go to map</button>
+                        <Link to="/profile">Go to profile</Link>
                     </p>
                 ) : (
                     <div className="container"> 
@@ -31,13 +29,13 @@ export class RegForm extends Component {
                     </div>
                     <div className="form">
                         <div className="form__header">Зарегистрироваться</div>
-                        <form className="form__input">
+                        <form onSubmit={this.authenticate} className="form__input">
                             <label htmlFor="email">Email:</label>
                             <input id="email" className="input" type="email" name="email" size="28" placeholder="Имя пользователя"/>
                             <label htmlFor="password">Password:</label>
                             <input id="password" className="input" type="password" name="password" size="28" placeholder="Пароль"/>                      
-                        </form>
                             <button type="submit" className="button">Зарегистрироваться</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -50,7 +48,9 @@ export class RegForm extends Component {
 RegForm.propTypes = {
     isLoggedIn: PropTypes.bool,
     logIn: PropTypes.func,
-    navigate: PropTypes.func,
-  };
+};
 
-export const RegFormWithAuth = withAuth(RegForm)
+  export const RegFormWithConnect = connect(
+    (state) => ({isLoggedIn: state.auth.isLoggedIn}),
+    { authenticate }
+)(RegForm);
