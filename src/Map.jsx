@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import mapboxgl from 'mapbox-gl'
 
 export class Map extends Component {
@@ -23,7 +23,7 @@ export class Map extends Component {
   }
 
   componentWillUnmount() {
-    this.map.remove();
+    this.map?.remove?.();
   }
 
   render() {

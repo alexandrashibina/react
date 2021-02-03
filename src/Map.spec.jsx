@@ -1,5 +1,6 @@
 import React from "react";
 import { Map } from "./Map";
+import {App} from "./App";
 import { render } from "@testing-library/react";
 import mapbox from "mapbox-gl";
 

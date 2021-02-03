@@ -5,7 +5,7 @@ import {LoginWithAuth} from './Login.jsx';
 import {ProfileWithAuth} from './Profile.jsx';
 import {RegFormWithAuth} from './RegForm.jsx';
 import {withAuth} from './AuthContext';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import './App.css';
 
 class App extends Component {
