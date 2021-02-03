@@ -7,6 +7,7 @@ exports[`App renders correctly 1`] = `
   <div>
     <header
       className="header"
+      data-testid="header"
       id="header"
     >
       <div

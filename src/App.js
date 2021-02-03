@@ -6,7 +6,7 @@ import logo from './logo.svg';
 import {Map} from './Map.jsx';
 import {LoginWithConnect} from './Login.jsx';
 import {ProfileWitConnect} from './Profile.jsx';
-import {RegForm} from './RegForm.jsx';
+import {RegFormWithConnect} from './RegForm.jsx';
 import PropTypes from 'prop-types'
 import './App.css';
 import { Switch, Link, Route } from 'react-router-dom';
@@ -21,7 +21,7 @@ class App extends Component {
   renderHeader = () => {
     return (
       <div>
-        <header className="header" id="header">
+        <header data-testid="header" className="header" id="header">
           {this.hideHeader}
           <div className="header__logo">
           <img src={logo} className="logo-item" alt="logo" />
@@ -42,12 +42,13 @@ class App extends Component {
   render () {
    return (
     <div className="wrapper">
-      { document.location.pathname !== "/reg"? this.renderHeader() : null }
+      {/* { document.location.pathname !== "/" ? this.renderHeader() : null } */}
+      {this.renderHeader()}
       <main> 
         <section>
           <Switch>
             <Route exact path="/" component={LoginWithConnect}/>
-            <Route exact path="/reg" component={RegForm}/>
+            <Route exact path="/reg" component={RegFormWithConnect}/>
             <PrivateRoute path="/map" component={Map}/>
             <PrivateRoute path="/profile" component={ProfileWitConnect}/>
           </Switch>

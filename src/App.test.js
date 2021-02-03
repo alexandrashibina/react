@@ -1,10 +1,12 @@
 import React from 'react';
-import { render, fireEvent } from "@testing-library/react";
+import { render, fireEvent, screen } from "@testing-library/react";
 import renderer from "react-test-renderer";
 import App from './App';
 import { Provider } from 'react-redux';
-import {Link, Router} from 'react-router-dom';
+import {Router} from 'react-router-dom';
 import { createMemoryHistory} from 'history';
+import userEvent from '@testing-library/user-event';
+import '@testing-library/jest-dom/extend-expect';
 
 jest.mock("./map", () => ({ Map: () => <Map/> }));
 
@@ -34,16 +36,18 @@ describe('App', () => {
       dispatch: () => {},
     };
     const history = createMemoryHistory();
-    const {container, getByText} = render(
+    const {getByTestId, getByText} = render(
       <Router history={history}>
         <Provider store={mockStore}>
           <App />
         </Provider>
-      </Router>
+      </Router> 
     );
-    fireEvent.click(getByText('Карта'));
-    expect(container.innerHTML).toMatch(<Map/>);
-    fireEvent.click(getByText('Профиль'));
-    expect(container.innerHTML).toMatch(<Profile/>);
+    expect(getByTestId('header')).toBeInTheDocument()
+    fireEvent.click(getByText('Профиль'))
+    expect(getByTestId('profile')).toBeInTheDocument()
+    
+    // userEvent.click(screen.getByText('Профиль'));
+    // expect(screen.getByTestId('profile')).toBeInTheDocument()
   });
 });

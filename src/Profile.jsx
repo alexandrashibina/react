@@ -6,7 +6,7 @@ import mc from './mc.svg'
 export class Profile extends Component {
   render() {
     return (
-        <div className="container"> 
+        <div data-testid="profile" className="container"> 
           <div className="login">
             <div className="form">
               <div className="profile__content">

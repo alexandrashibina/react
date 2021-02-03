@@ -22,7 +22,7 @@ export class RegForm extends Component {
                         <Link to="/profile">Go to profile</Link>
                     </p>
                 ) : (
-                    <div className="container"> 
+                    <div data-testid="reg" className="container"> 
                 <div className="login">
                     <div className="login__logo">
                         <img src={logo} className="logo-item logo-item--white" alt="logo" />

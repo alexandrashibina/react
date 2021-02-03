@@ -42,9 +42,6 @@ a {
   overflow: hidden;
 }
 
-.map-wrapper {
-  position: relative;
-}
 
 .map {
 z-index: -10;

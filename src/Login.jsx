@@ -22,7 +22,7 @@ export class Login extends Component {
                     You are logged in. <Link to="/profile">Go to profile</Link>
                     </p>
                 ) : (
-                    <div className="container"> 
+                    <div data-testid="login" className="container"> 
                         <div className="login">
                             <div className="login__logo">
                                 <img src={logo} className="logo-item logo-item--white" alt="logo" />
