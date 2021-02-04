@@ -1,0 +1,92 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App component renders correctly 1`] = `
+<div
+  className="wrapper"
+>
+  <div>
+    <header
+      className="header"
+      data-testid="header"
+    >
+      <div
+        className="header__logo"
+      >
+        <img
+          alt="logo"
+          className="logo-item"
+          src="logo.svg"
+        />
+      </div>
+      <nav
+        className="header__menu"
+      >
+        <ul>
+          <li>
+            <button
+              className="header__menu-item"
+              onClick={[Function]}
+            >
+              Карта
+            </button>
+          </li>
+          <li>
+            <button
+              className="header__menu-item"
+              onClick={[Function]}
+            >
+              Профиль
+            </button>
+          </li>
+          <li>
+            <button
+              className="header__menu-item"
+              onClick={[Function]}
+            >
+              Выйти
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </header>
+  </div>
+  <main>
+    <section>
+      <div>
+        <div
+          className="block"
+        >
+          <div
+            className="block__text"
+          >
+            <div
+              className="block__text-header"
+            >
+              Заполните платежные данные
+            </div>
+            <div
+              className="block__text-content"
+            >
+              Укажите информацию о банковской карте, чтобы сделать заказ.
+            </div>
+            <button
+              className="button"
+              onClick={[Function]}
+            >
+              Перейти в профиль
+            </button>
+          </div>
+        </div>
+        <div
+          className="map-wrapper"
+        >
+          <div
+            className="map"
+            data-testid="map"
+          />
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+`;

@@ -10,7 +10,7 @@ export class Profile extends Component {
 
   render() {
     return (
-        <div className="container"> 
+        <div className="container" data-testid="profile"> 
           <div className="login">
             <div className="form">
               <div className="profile__content">

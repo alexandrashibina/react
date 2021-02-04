@@ -35,7 +35,7 @@ class App extends Component {
   renderHeader = () => {
     return (
       <div>
-        <header className="header" id="header">
+        <header className="header" data-testid="header">
           {this.hideHeader}
           <div className="header__logo">
           <img src={logo} className="logo-item" alt="logo" />
