@@ -27,6 +27,7 @@ exports[`Profile renders correctly 1`] = `
       </div>
       <form
         className="form__input profile__input"
+        onSubmit={[Function]}
       >
         <div
           className="form__input-container"
@@ -45,11 +46,13 @@ exports[`Profile renders correctly 1`] = `
             </span>
             <input
               className="input"
+              name="cardNumber"
               placeholder="Номер карты"
               type="text"
             />
             <input
               className="input"
+              name="expiryDate"
               placeholder="01/21"
               type="text"
             />
@@ -59,11 +62,13 @@ exports[`Profile renders correctly 1`] = `
           >
             <input
               className="input"
+              name="cardName"
               placeholder="Имя владельца"
               type="text"
             />
             <input
               className="input"
+              name="cvc"
               placeholder="CVC"
               type="text"
             />
