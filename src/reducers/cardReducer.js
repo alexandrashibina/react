@@ -1,7 +1,7 @@
 import {ADD_BANK_CARD} from '../actions';
 
 const initialState = {
-  isLoggedIn: false
+  isLoggedIn: true
 };
 
 export default function(state = initialState, action) {

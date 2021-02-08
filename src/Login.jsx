@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {authenticate} from './actions';
-import PropTypes from 'prop-types'
 import logo from './logo.svg'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom';
 
 

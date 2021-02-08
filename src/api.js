@@ -3,14 +3,15 @@ import axios from "axios"; //делает encodeURIComponent по умолчан
 export const serverLogin = async (email, password) => {
   return axios(
     `http://loft-taxi.glitch.me/auth`, {
+      method: 'post',
       params: {
         username: email,
         password: password,
       },
-    }).then((response) => response.data.success);
+    }).then((response) => response.data);
 };
 
-export const addBankCard = async (cardNumber, expiryDate, cardName, cvc) => {
+export const saveBankCard = async (cardNumber, expiryDate, cardName, cvc) => {
   // TODO: fix params
   return axios(
     `http://loft-taxi.glitch.me/card`, {
@@ -21,6 +22,5 @@ export const addBankCard = async (cardNumber, expiryDate, cardName, cvc) => {
         cardName: cardName,
         cvc: cvc,
       }
-    }
-  ).then((response) => response.data.success);
+    }).then((response) => response.data);
 };
