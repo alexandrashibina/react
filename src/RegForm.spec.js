@@ -1,11 +1,11 @@
 import React from "react";
-import { Login } from "./Login";
+import { RegForm } from "./RegForm";
 import { render } from "@testing-library/react";
 import { Router } from "react-router-dom";
 import { Provider } from "react-redux";
 import { createMemoryHistory } from "history";
 
-describe("Login", () => {
+describe("RegForm", () => {
     describe("when logged out", () => {
       test("renders form", () => {
         
@@ -18,7 +18,7 @@ describe("Login", () => {
         const { getByLabelText } = render(
         <Router history={history}>
           <Provider store={mockStore}>
-            <Login />);
+            <RegForm />);
           </Provider>
         </Router>);
         expect(getByLabelText("Email:")).toHaveAttribute("name", "email");
@@ -27,7 +27,7 @@ describe("Login", () => {
   
     });
 
-    describe("when logged in", () => {
+    describe("when registered", () => {
       test("renders profile link", () => {
         const mockStore = {
           getState: () => ({auth: {isLoggedIn: true} }),
@@ -35,14 +35,14 @@ describe("Login", () => {
           dispatch: () => {},
         };
         const history = createMemoryHistory();
-        const { container } = render(
+        const { getByText } = render(
           <Router history={history}>
             <Provider store={mockStore}>
-              <Login isLoggedIn />
+              <RegForm isLoggedIn />
             </Provider>
           </Router>
         );
-      expect(container.innerHTML).toMatch("You are logged in.");
+        expect(getByText("You are registered")).toBeInTheDocument()
       });
     });
   });

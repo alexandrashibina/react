@@ -37,13 +37,11 @@ a {
   width: 100vw;
   height: 100vh;
   display: flex;
-  background-image: url(https://boring-mcclintock-9267da.netlify.app/assets/login-background.jpg) ;
+  background: url(https://boring-mcclintock-9267da.netlify.app/assets/login-background.jpg) center center no-repeat;
+  background-size:cover;
   overflow: hidden;
 }
 
-.map-wrapper {
-  position: relative;
-}
 
 .map {
 z-index: -10;

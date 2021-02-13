@@ -1,35 +1,43 @@
 import React, {Component} from 'react';
-import { withAuth } from './AuthContext';
-import mc from './mc.svg'
+import {connect} from 'react-redux';
+import { addBankCard } from './actions';
+import mc from './mc.svg';
+import { Link } from 'react-router-dom';
 
 export class Profile extends Component {
-  goToMap = (event) => {
+  
+  handleSubmit = (event) => {
     event.preventDefault();
-    this.props.navigate("map");
-  };
+    const { cardNumber, expiryDate, cardName, cvc } = event.target;
+    this.props.addBankCard(cardNumber.value, expiryDate.value, cardName.value, cvc.value);
+  }
 
   render() {
     return (
+<<<<<<< HEAD
         <div className="container" data-testid="profile"> 
+=======
+        <div data-testid="profile" className="container"> 
+>>>>>>> feat/week-3
           <div className="login">
             <div className="form">
               <div className="profile__content">
               <div className="form__header profile">Профиль</div>
               <div className="form__text profile">Способ оплаты</div>
               </div>
-              <form className="form__input profile__input">
+              <form onSubmit={this.handleSubmit} className="form__input profile__input">
                 <div className="form__input-container">
                   <div className="column">
                   <span className="mc-icon"><img className="mc-img" src={mc} alt="MC"/></span>
-                    <input className="input" type="text" placeholder="Номер карты"/>
-                    <input className="input" type="text" placeholder="01/21"/>
+                    <input name="cardNumber" className="input" type="text" placeholder="Номер карты"/>
+                    <input name="expiryDate" className="input" type="text" placeholder="01/21"/>
                   </div>
                   <div className="column">
-                    <input className="input" type="text" placeholder="Имя владельца"/>
-                    <input className="input" type="text" placeholder="CVC"/>
+                    <input name="cardName" className="input" type="text" placeholder="Имя владельца"/>
+                    <input name="cvc" className="input" type="text" placeholder="CVC"/>
                   </div>
                 </div>
-                <button className="button" onClick={this.goToMap}>Сохранить данные</button>
+                <Link to="map" className="button" >Сохранить данные</Link>
               </form>
             </div>
           </div>
@@ -38,4 +46,4 @@ export class Profile extends Component {
   }
 } 
 
-export const ProfileWithAuth = withAuth(Profile)
+export const ProfileWitConnect = connect(null,null, {addBankCard})(Profile);

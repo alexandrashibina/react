@@ -1,6 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+<<<<<<< HEAD
 exports[`App component renders correctly 1`] = `
+=======
+exports[`App renders correctly 1`] = `
+>>>>>>> feat/week-3
 <div
   className="wrapper"
 >
@@ -8,6 +12,10 @@ exports[`App component renders correctly 1`] = `
     <header
       className="header"
       data-testid="header"
+<<<<<<< HEAD
+=======
+      id="header"
+>>>>>>> feat/week-3
     >
       <div
         className="header__logo"
@@ -23,6 +31,7 @@ exports[`App component renders correctly 1`] = `
       >
         <ul>
           <li>
+<<<<<<< HEAD
             <button
               className="header__menu-item"
               onClick={[Function]}
@@ -45,6 +54,33 @@ exports[`App component renders correctly 1`] = `
             >
               Выйти
             </button>
+=======
+            <a
+              className="header__menu-item"
+              href="/map"
+              onClick={[Function]}
+            >
+              Карта
+            </a>
+          </li>
+          <li>
+            <a
+              className="header__menu-item"
+              href="/profile"
+              onClick={[Function]}
+            >
+              Профиль
+            </a>
+          </li>
+          <li>
+            <a
+              className="header__menu-item"
+              href="/"
+              onClick={[Function]}
+            >
+              Выйти
+            </a>
+>>>>>>> feat/week-3
           </li>
         </ul>
       </nav>
@@ -52,6 +88,7 @@ exports[`App component renders correctly 1`] = `
   </div>
   <main>
     <section>
+<<<<<<< HEAD
       <div>
         <div
           className="block"
@@ -86,6 +123,17 @@ exports[`App component renders correctly 1`] = `
           />
         </div>
       </div>
+=======
+      <p>
+        You are logged in. 
+        <a
+          href="/profile"
+          onClick={[Function]}
+        >
+          Go to profile
+        </a>
+      </p>
+>>>>>>> feat/week-3
     </section>
   </main>
 </div>

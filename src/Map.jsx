@@ -1,15 +1,15 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+<<<<<<< HEAD
 import mapboxgl from 'mapbox-gl'
+=======
+import mapboxgl from 'mapbox-gl';
+import { Link } from 'react-router-dom';
+>>>>>>> feat/week-3
 
 export class Map extends Component {
   map = null;
   mapContainer = React.createRef();
-
-  goToProfile = (event) => {
-    event.preventDefault();
-    this.props.navigate("profile");
-  };
 
   componentDidMount() {
     mapboxgl.accessToken = 
@@ -33,7 +33,7 @@ export class Map extends Component {
           <div className="block__text">
             <div className="block__text-header">Заполните платежные данные</div>
             <div className="block__text-content">Укажите информацию о банковской карте, чтобы сделать заказ.</div>
-            <button className="button" onClick={this.goToProfile}>Перейти в профиль</button>
+            <Link to="/profile" className="button">Перейти в профиль</Link>
           </div>
         </div>
         <div className="map-wrapper">
