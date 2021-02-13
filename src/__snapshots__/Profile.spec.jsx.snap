@@ -74,13 +74,13 @@ exports[`Profile renders correctly 1`] = `
             />
           </div>
         </div>
-        <a
+        <button
           className="button"
-          href="/map"
-          onClick={[Function]}
+          to="map"
+          type="submit"
         >
           Сохранить данные
-        </a>
+        </button>
       </form>
     </div>
   </div>

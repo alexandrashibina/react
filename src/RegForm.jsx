@@ -1,16 +1,16 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {authenticate} from './actions';
+import {registerUser} from './actions';
 import logo from './logo.svg'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom';
 
 export class RegForm extends Component {
 
-    authenticate = (event) => {
+    registerUser = (event) => {
         event.preventDefault();
-        const { email, password } = event.target;
-        this.props.authenticate(email.value, password.value);
+        const { email, password, name, surname } = event.target;
+        this.props.registerUser(email.value, password.value, name.value, surname.value);
     };
 
     render() {
@@ -28,11 +28,15 @@ export class RegForm extends Component {
                         </div>
                         <div className="form">
                             <div className="form__header">Зарегистрироваться</div>
-                                <form onSubmit={this.authenticate} className="form__input">
+                                <form onSubmit={this.registerUser} className="form__input">
                                     <label htmlFor="email">Email:</label>
                                     <input id="email" className="input" type="email" name="email" size="28" placeholder="Имя пользователя"/>
                                     <label htmlFor="password">Password:</label>
                                     <input id="password" className="input" type="password" name="password" size="28" placeholder="Пароль"/>                      
+                                    <label htmlFor="name">Name:</label>
+                                    <input id="name" className="input" type="text" name="name" size="28" placeholder="Имя"/>                      
+                                    <label htmlFor="surname">Surname:</label>
+                                    <input id="surname" className="input" type="text" name="surname" size="28" placeholder="Фамилия"/>                      
                                     <button type="submit" className="button">Зарегистрироваться</button>
                                 </form>
                             </div>
@@ -50,6 +54,8 @@ RegForm.propTypes = {
 };
 
   export const RegFormWithConnect = connect(
-    (state) => ({isLoggedIn: state.auth.isLoggedIn}),
-    { authenticate }
+    (state) => {
+          return ({ isLoggedIn: state.auth.isLoggedIn });
+      },
+    { registerUser }
 )(RegForm);

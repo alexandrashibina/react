@@ -3,9 +3,9 @@ import {PrivateRoute} from './PrivateRoute';
 import {connect} from 'react-redux';
 import {logIn,logOut} from './actions';
 import logo from './logo.svg';
-import {Map} from './Map.jsx';
+import {MapWithConnect} from './Map.jsx';
 import {LoginWithConnect} from './Login.jsx';
-import {ProfileWitConnect} from './Profile.jsx';
+import {ProfileWithConnect} from './Profile.jsx';
 import {RegFormWithConnect} from './RegForm.jsx';
 import PropTypes from 'prop-types'
 import './App.css';
@@ -49,8 +49,8 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={LoginWithConnect}/>
             <Route exact path="/reg" component={RegFormWithConnect}/>
-            <PrivateRoute path="/map" component={Map}/>
-            <PrivateRoute path="/profile" component={ProfileWitConnect}/>
+            <PrivateRoute path="/map" component={MapWithConnect}/>
+            <PrivateRoute path="/profile" component={ProfileWithConnect}/>
           </Switch>
         </section>
       </main>
@@ -60,7 +60,7 @@ class App extends Component {
 } 
 
 App.propTypes = {
-  isLoggedIn: PropTypes.bool
+  isLoggedIn: PropTypes.bool,
 };
 
 export default connect(

@@ -1,25 +1,15 @@
 import {ADD_BANK_CARD} from '../actions';
 
 const initialState = {
-  isLoggedIn: true
+  cardAdded: false
 };
 
-export default function(state = initialState, action) {
+export default function (state = initialState, action) {
   switch (action.type) {
     case ADD_BANK_CARD: {
-      return {...action.payload}
+      return {cardAdded: true, ...action.payload}
     }
     default:
       return state
   }
 }
-
-
-// component UI
-/* 
-redux - store
- - actions
- - middlewares
- - reducers
- - state -> re-render
-*/

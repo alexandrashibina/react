@@ -55,6 +55,6 @@ Login.propTypes = {
   };
 
 export const LoginWithConnect = connect(
-    (state) => ({isLoggedIn: state.auth.isLoggedIn}),
+    (state) => ({ isLoggedIn: state.auth.isLoggedIn }),
     { authenticate }
 )(Login);
