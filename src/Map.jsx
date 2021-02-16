@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import mapboxgl from 'mapbox-gl';
 import { Link } from 'react-router-dom';
 import {drawRoute} from './mapRoute';
-
+import TextField from '@material-ui/core/TextField';
 
 const coordinates =
     [
@@ -52,10 +52,10 @@ export class Map extends Component {
     });
   }
 
-  handleRoute() {
-    this.map.on('load', () => {
-    drawRoute(this.map, coordinates);      
-    });
+
+  handleRoute(event) {
+    event.preventDefault();
+    drawRoute(this.map, coordinates); 
   }
 
   componentWillUnmount() {
@@ -64,15 +64,16 @@ export class Map extends Component {
 
   render() {
     return (
-    <div>
+    <div className="map-wrapper">
+      <div data-testid="map" className="map" ref={this.mapContainer}></div>
       <div className="block">
         {this.props.cardAdded ? (
           <div className="block__text">
             <div className="block__text-header">Выберите маршрут</div>
             <form onSubmit={this.handleRoute}>
-              <input type="text"/>
-              <input type="text"/>
-              <button type="submit" className="button">Построить маршрут</button>
+              <TextField name="address1" id="standard-basic" label="Откуда?"/>
+              <TextField name="address2" id="standard-basic" label="Куда?"/>
+              <button type="submit" className="button map-btn">Построить маршрут</button>
             </form>
           </div>
         ) : (
@@ -82,9 +83,6 @@ export class Map extends Component {
             <Link to="/profile" className="button">Перейти в профиль</Link>
           </div>
         )}
-        <div className="map-wrapper">
-          <div data-testid="map" className="map" ref={this.mapContainer}></div>
-        </div>
       </div>
     </div>
     );

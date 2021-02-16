@@ -4,7 +4,7 @@ import {takeEvery, call, put} from 'redux-saga/effects';
 
 
 export function* addressSaga(action) {
-    const list = action.payload;
+    const {list} = action.payload;
     const success = yield call(addressList, list)
     if (success) {
         yield put(getAddressList());

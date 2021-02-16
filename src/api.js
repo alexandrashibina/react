@@ -52,7 +52,7 @@ export const route = async (address1, address2) => {
 export const addressList = async () => {
   return axios({
     method: 'get',
-    url:'http://loft-taxi.glitch.me/addressList',
+    url:'http://loft-taxi.glitch.me/addressList'
   })
   .then((response) => response.data);
 };

@@ -75,6 +75,10 @@
   cursor: pointer;
 }
 
+.map-btn {
+  margin-left: 5%;
+}
+
 .button:focus {
   outline: transparent;
 }
@@ -141,6 +145,13 @@
   display: flex; 
   margin-bottom: 5%;
 }
+
+.MuiFormControl-root {
+  margin: 5% !important;
+  width: 80% !important;
+}
+
+
 
 .input {
   margin-bottom: 20px;

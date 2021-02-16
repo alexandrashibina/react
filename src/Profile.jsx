@@ -4,7 +4,7 @@ import { addBankCard } from './actions';
 import mc from './mc.svg';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-
+import TextField from '@material-ui/core/TextField';
 
 export class Profile extends Component {
   
@@ -22,13 +22,13 @@ export class Profile extends Component {
           <div className="login">
             <div className="form">
               <div className="profile__content">
-              <div className="form__header profile">Профиль</div>
-              <div className="form__text profile">Способ оплаты</div>
+              <div className="form__header profile">Спасибо!</div>
+
               </div>
               <form className="form__input profile__input">
                 <div className="form__input-container">
-                  <div className="column">
-                    Спасибо, ваши платежные данные сохранены!
+                  <div>
+                    Ваши платежные данные сохранены
                   </div>
                 </div>
                 <Link to="map" className="button">Построить маршрут</Link>
@@ -48,12 +48,12 @@ export class Profile extends Component {
                 <div className="form__input-container">
                   <div className="column">
                   <span className="mc-icon"><img className="mc-img" src={mc} alt="MC"/></span>
-                    <input name="cardNumber" className="input" type="text" placeholder="Номер карты"/>
-                    <input name="expiryDate" className="input" type="text" placeholder="01/21"/>
+                    <TextField id="standard-basic" label="Номер карты" name="cardNumber" className="input" placeholder="0000 0000 0000 0000"/>
+                    <TextField id="date" format="MM/yy" label="Дейстителен до" type="date" className="input" name="expiryDate" InputLabelProps={{shrink: true}}/>
                   </div>
                   <div className="column">
-                    <input name="cardName" className="input" type="text" placeholder="Имя владельца"/>
-                    <input name="cvc" className="input" type="text" placeholder="CVC"/>
+                    <TextField id="standard-basic" label="Имя владельца" name="cardName" className="input"/>
+                    <TextField id="standard-basic" label="CVC" name="cvc" className="input"/>
                   </div>
                 </div>
                 <button type="submit" to="map" className="button">Сохранить данные</button>
