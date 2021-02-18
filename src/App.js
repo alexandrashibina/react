@@ -64,6 +64,6 @@ App.propTypes = {
 };
 
 export default connect(
-  (state) => ({isLoggedIn: state.auth.isLoggedIn}),
+  (state) => ({isLoggedIn: state.auth.isLoggedIn}, {cardAdded: state.auth.cardAdded}),
   { logIn, logOut }
 )(App);

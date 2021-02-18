@@ -1,28 +1,19 @@
-import { savePaymentSaga } from './paymentSaga';
-import {addBankCard, ADD_BANK_CARD} from '../actions';
-import {recordSaga} from './recordSaga';
+import { paymentSaga, savePaymentSaga } from './paymentSaga';
+import { takeEvery } from 'redux-saga/effects';
 
 jest.mock("../api", () => ({saveBankCard: jest.fn(() => true) }));
 
-describe("paymentSaga", () => {
-    describe("#ADD_BANK_CARD", () => {
-        it("adds bank card through api", async () => {
-            const dispatched = await recordSaga(
-                savePaymentSaga,
-                addBankCard(
-                    "0000 0000 0000 0000",
-                    "01/21",
-                    "TEST TEST",
-                    "000",
-                    )
-            );
-            expect(dispatched).toEqual(
-                [
-                    {
-                        type: ADD_BANK_CARD, 
-                    },
-                ]
-            );
-        });
+
+describe ('paymentSaga', () => {
+    const genObject = paymentSaga();
+
+    it('should wait for every ADD_BANK_CARD action and call savePaymentSaga', () => {
+        expect(genObject.next().value)
+        .toEqual(takeEvery('ADD_BANK_CARD', savePaymentSaga));
     });
+
+    it('should be done on next iteration', () => {
+        expect(genObject.next().done).toBeTruthy();
+      });
+
 });

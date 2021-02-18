@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 
 export class Profile extends Component {
-  
+
   handleSubmit = (event) => {
     event.preventDefault();
     const { cardNumber, expiryDate, cardName, cvc } = event.target;
@@ -18,17 +18,23 @@ export class Profile extends Component {
     return (
       <>
         {this.props.cardAdded ? (
-          <div data-testid="profile" className="container"> 
+        <div data-testid="profile" className="container"> 
           <div className="login">
             <div className="form">
               <div className="profile__content">
-              <div className="form__header profile">Спасибо!</div>
-
+                <div className="form__header profile">Профиль</div>
+                <div className="form__text profile">Данные карты</div>
               </div>
               <form className="form__input profile__input">
                 <div className="form__input-container">
-                  <div>
-                    Ваши платежные данные сохранены
+                  <div className="column">
+                  <span className="mc-icon"><img className="mc-img" src={mc} alt="MC"/></span>
+                    <TextField id="standard-basic" name="cardNumber" label="Номер карты" className="input"/>
+                    <TextField id="date" name="expiryDate" format="MM/yy" label="Дейстителен до" type="date" className="input" InputLabelProps={{shrink: true}}/>
+                  </div>
+                  <div className="column">
+                    <TextField id="standard-basic" name="cardName" label="Имя владельца" className="input"/>
+                    <TextField id="standard-basic" name="cvc" label="CVC" className="input"/>
                   </div>
                 </div>
                 <Link to="map" className="button">Построить маршрут</Link>
@@ -75,3 +81,24 @@ export const ProfileWithConnect = connect(
   (state) => ({cardAdded: state.card.cardAdded}),
   {addBankCard}
 )(Profile);
+
+
+
+{/* <div data-testid="profile" className="container"> 
+<div className="login">
+  <div className="form">
+    <div className="profile__content">
+    <div className="form__header profile">Спасибо!</div>
+
+    </div>
+    <form className="form__input profile__input">
+      <div className="form__input-container">
+        <div>
+          Ваши платежные данные сохранены
+        </div>
+      </div>
+      <Link to="map" className="button">Построить маршрут</Link>
+    </form>
+  </div>
+</div>
+</div> */}

@@ -6,17 +6,20 @@ import reportWebVitals from './reportWebVitals';
 import { theme } from "loft-taxi-mui-theme"; // Импортируем саму тему
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import {BrowserRouter} from 'react-router-dom';
-import { store } from './store';
+import { store, persistor } from './store';
 import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react'
 
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Provider store={store}>
-      <MuiThemeProvider theme={theme}>
-        <App />
-        </MuiThemeProvider>
+        <PersistGate loading={null} persistor={persistor}>
+          <MuiThemeProvider theme={theme}>
+            <App />
+            </MuiThemeProvider>
+        </PersistGate>
       </Provider>
     </BrowserRouter>
   </React.StrictMode>,

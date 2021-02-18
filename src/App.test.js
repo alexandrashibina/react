@@ -15,7 +15,12 @@ describe('App', () => {
 
   test("renders correctly", () => {
     const mockStore = {
-      getState: () => ({auth: {isLoggedIn: true}}),
+      getState: () => (
+        {
+          auth: {isLoggedIn: true},
+          card: {cardAdded: true},
+        }
+      ),
       subscribe: () => {},
       dispatch: () => {},
     };
@@ -32,7 +37,12 @@ describe('App', () => {
 
   it("opens correct pages when clicked on buttons", () => {
     const mockStore = {
-      getState: () => ({auth: {isLoggedIn: true}}),
+      getState: () => (
+        {
+          auth: {isLoggedIn: true},
+          card: {cardAdded: true},
+        }
+      ),
       subscribe: () => {},
       dispatch: () => {},
     };

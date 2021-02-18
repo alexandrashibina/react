@@ -5,6 +5,7 @@ import mapboxgl from 'mapbox-gl';
 import { Link } from 'react-router-dom';
 import {drawRoute} from './mapRoute';
 import TextField from '@material-ui/core/TextField';
+import { Formik } from 'formik';
 
 const coordinates =
     [
@@ -70,11 +71,29 @@ export class Map extends Component {
         {this.props.cardAdded ? (
           <div className="block__text">
             <div className="block__text-header">Выберите маршрут</div>
-            <form onSubmit={this.handleRoute}>
-              <TextField name="address1" id="standard-basic" label="Откуда?"/>
-              <TextField name="address2" id="standard-basic" label="Куда?"/>
-              <button type="submit" className="button map-btn">Построить маршрут</button>
-            </form>
+            <Formik
+                validate={values => {
+                  const errors = {
+                      address1: '',
+                      address2: '',
+                  };
+                  if(values.address1.includes('')){
+                      errors.address1 = 'Please choose location';
+                  }
+                  return errors;
+              }}
+              render={({touched, errors}) => {
+                return (
+                  <form onSubmit={this.handleRoute}>
+                    <TextField name="address1" id="standard-basic" label="Откуда?"/>
+                    {touched.address1 && errors.address1 && <div>{errors.address1}</div>}
+                    <TextField name="address2" id="standard-basic" label="Куда?"/>
+                    {touched.address2 && errors.address2 && (<div>{errors.address2}</div>)}
+                    <button type="submit" className="button map-btn">Построить маршрут</button>
+                  </form>
+                )
+              }}
+            />
           </div>
         ) : (
           <div className="block__text">
@@ -90,8 +109,7 @@ export class Map extends Component {
 }
 
 Map.propTypes = {
-  navigate: PropTypes.func,
-  ref: PropTypes.func
+  cardAdded: PropTypes.bool,
 };
 
 export const MapWithConnect = connect(
