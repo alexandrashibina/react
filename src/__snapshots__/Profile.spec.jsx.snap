@@ -44,43 +44,145 @@ exports[`Profile renders correctly 1`] = `
                 src="mc.svg"
               />
             </span>
-            <input
-              className="input"
-              name="cardNumber"
-              placeholder="Номер карты"
-              type="text"
-            />
-            <input
-              className="input"
-              name="expiryDate"
-              placeholder="01/21"
-              type="text"
-            />
+            <div
+              className="MuiFormControl-root MuiTextField-root input"
+            >
+              <label
+                className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
+                data-shrink={false}
+                htmlFor="standard-basic"
+                id="standard-basic-label"
+              >
+                Номер карты
+              </label>
+              <div
+                className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
+                onClick={[Function]}
+              >
+                <input
+                  aria-invalid={false}
+                  autoFocus={false}
+                  className="MuiInputBase-input MuiInput-input"
+                  disabled={false}
+                  id="standard-basic"
+                  name="cardNumber"
+                  onAnimationStart={[Function]}
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  placeholder="0000 0000 0000 0000"
+                  required={false}
+                  type="text"
+                />
+              </div>
+            </div>
+            <div
+              className="MuiFormControl-root MuiTextField-root input"
+              format="MM/yy"
+            >
+              <label
+                className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink"
+                data-shrink={true}
+                htmlFor="date"
+                id="date-label"
+              >
+                Дейстителен до
+              </label>
+              <div
+                className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
+                onClick={[Function]}
+              >
+                <input
+                  aria-invalid={false}
+                  autoFocus={false}
+                  className="MuiInputBase-input MuiInput-input"
+                  disabled={false}
+                  id="date"
+                  name="expiryDate"
+                  onAnimationStart={[Function]}
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  required={false}
+                  type="date"
+                />
+              </div>
+            </div>
           </div>
           <div
             className="column"
           >
-            <input
-              className="input"
-              name="cardName"
-              placeholder="Имя владельца"
-              type="text"
-            />
-            <input
-              className="input"
-              name="cvc"
-              placeholder="CVC"
-              type="text"
-            />
+            <div
+              className="MuiFormControl-root MuiTextField-root input"
+            >
+              <label
+                className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
+                data-shrink={false}
+                htmlFor="standard-basic"
+                id="standard-basic-label"
+              >
+                Имя владельца
+              </label>
+              <div
+                className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
+                onClick={[Function]}
+              >
+                <input
+                  aria-invalid={false}
+                  autoFocus={false}
+                  className="MuiInputBase-input MuiInput-input"
+                  disabled={false}
+                  id="standard-basic"
+                  name="cardName"
+                  onAnimationStart={[Function]}
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  required={false}
+                  type="text"
+                />
+              </div>
+            </div>
+            <div
+              className="MuiFormControl-root MuiTextField-root input"
+            >
+              <label
+                className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
+                data-shrink={false}
+                htmlFor="standard-basic"
+                id="standard-basic-label"
+              >
+                CVC
+              </label>
+              <div
+                className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
+                onClick={[Function]}
+              >
+                <input
+                  aria-invalid={false}
+                  autoFocus={false}
+                  className="MuiInputBase-input MuiInput-input"
+                  disabled={false}
+                  id="standard-basic"
+                  name="cvc"
+                  onAnimationStart={[Function]}
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  required={false}
+                  type="text"
+                />
+              </div>
+            </div>
           </div>
         </div>
-        <a
+        <button
           className="button"
-          href="/map"
-          onClick={[Function]}
+          to="map"
+          type="submit"
         >
           Сохранить данные
-        </a>
+        </button>
       </form>
     </div>
   </div>

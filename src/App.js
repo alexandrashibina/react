@@ -3,19 +3,11 @@ import {PrivateRoute} from './PrivateRoute';
 import {connect} from 'react-redux';
 import {logIn,logOut} from './actions';
 import logo from './logo.svg';
-import {Map} from './Map.jsx';
-<<<<<<< HEAD
-import {LoginWithAuth} from './Login.jsx';
-import {ProfileWithAuth} from './Profile.jsx';
-import {RegFormWithAuth} from './RegForm.jsx';
-import {withAuth} from './AuthContext';
-import PropTypes from 'prop-types';
-=======
+import {MapWithConnect} from './Map.jsx';
 import {LoginWithConnect} from './Login.jsx';
-import {ProfileWitConnect} from './Profile.jsx';
+import {ProfileWithConnect} from './Profile.jsx';
 import {RegFormWithConnect} from './RegForm.jsx';
 import PropTypes from 'prop-types'
->>>>>>> feat/week-3
 import './App.css';
 import { Switch, Link, Route } from 'react-router-dom';
 
@@ -29,11 +21,7 @@ class App extends Component {
   renderHeader = () => {
     return (
       <div>
-<<<<<<< HEAD
         <header className="header" data-testid="header">
-=======
-        <header data-testid="header" className="header" id="header">
->>>>>>> feat/week-3
           {this.hideHeader}
           <div className="header__logo">
           <img src={logo} className="logo-item" alt="logo" />
@@ -61,8 +49,8 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={LoginWithConnect}/>
             <Route exact path="/reg" component={RegFormWithConnect}/>
-            <PrivateRoute path="/map" component={Map}/>
-            <PrivateRoute path="/profile" component={ProfileWitConnect}/>
+            <PrivateRoute path="/map" component={MapWithConnect}/>
+            <PrivateRoute path="/profile" component={ProfileWithConnect}/>
           </Switch>
         </section>
       </main>
@@ -72,10 +60,10 @@ class App extends Component {
 } 
 
 App.propTypes = {
-  isLoggedIn: PropTypes.bool
+  isLoggedIn: PropTypes.bool,
 };
 
 export default connect(
-  (state) => ({isLoggedIn: state.auth.isLoggedIn}),
+  (state) => ({isLoggedIn: state.auth.isLoggedIn}, {cardAdded: state.auth.cardAdded}),
   { logIn, logOut }
 )(App);
