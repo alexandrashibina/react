@@ -4,8 +4,11 @@ import PropTypes from 'prop-types';
 import mapboxgl from 'mapbox-gl';
 import { Link } from 'react-router-dom';
 import {drawRoute} from './mapRoute';
-import TextField from '@material-ui/core/TextField';
-import { Formik } from 'formik';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import {getAddressList} from './actions';
 
 const coordinates =
     [
@@ -42,6 +45,22 @@ export class Map extends Component {
   map = null;
   mapContainer = React.createRef();
 
+  handleAddressList = () => {
+    this.props.getAddressList();
+  };
+
+
+  handleChange () {
+    
+  }
+
+  handleRoute(event) {
+    event.preventDefault();
+    const { address1, address2 } = event.target;
+    this.props.getRoute(address1.value, address2.value);
+    drawRoute(this.map, coordinates); 
+  }
+
   componentDidMount() {
     mapboxgl.accessToken = 
     "pk.eyJ1IjoiYWxleGFuZHJhc2hpYmluYSIsImEiOiJja2s5aGk3eHUwY3luMndwYjFmZGhxNzRlIn0.bV3T6FIXJIsb_QyfK6bDWg"
@@ -51,12 +70,6 @@ export class Map extends Component {
       center: [30.3056504, 59.9429126],
       zoom: 10,
     });
-  }
-
-
-  handleRoute(event) {
-    event.preventDefault();
-    drawRoute(this.map, coordinates); 
   }
 
   componentWillUnmount() {
@@ -71,29 +84,20 @@ export class Map extends Component {
         {this.props.cardAdded ? (
           <div className="block__text">
             <div className="block__text-header">Выберите маршрут</div>
-            <Formik
-                validate={values => {
-                  const errors = {
-                      address1: '',
-                      address2: '',
-                  };
-                  if(values.address1.includes('')){
-                      errors.address1 = 'Please choose location';
-                  }
-                  return errors;
-              }}
-              render={({touched, errors}) => {
-                return (
-                  <form onSubmit={this.handleRoute}>
-                    <TextField name="address1" id="standard-basic" label="Откуда?"/>
-                    {touched.address1 && errors.address1 && <div>{errors.address1}</div>}
-                    <TextField name="address2" id="standard-basic" label="Куда?"/>
-                    {touched.address2 && errors.address2 && (<div>{errors.address2}</div>)}
-                    <button type="submit" className="button map-btn">Построить маршрут</button>
-                  </form>
-                )
-              }}
-            />
+              <form onSubmit={this.handleRoute}>
+                <FormControl>
+                  <InputLabel name="address1">Откуда?</InputLabel>
+                  <Select onChange={this.handleChange}>
+                  <MenuItem>{this.handleAddressList}</MenuItem>
+                  </Select>
+                </FormControl>
+                <FormControl>
+                  <InputLabel name="address2">Куда?</InputLabel>
+                  <Select>
+                  </Select>
+                </FormControl>
+                <button type="submit" className="button map-btn">Построить маршрут</button>
+              </form>
           </div>
         ) : (
           <div className="block__text">
@@ -113,4 +117,6 @@ Map.propTypes = {
 };
 
 export const MapWithConnect = connect(
-  (state) => ({cardAdded: state.card.cardAdded}))(Map);
+  (state) => ({cardAdded: state.card.cardAdded}),
+  {getAddressList}
+  )(Map);

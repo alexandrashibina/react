@@ -5,6 +5,7 @@ import mc from './mc.svg';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
+import { Formik } from 'formik';
 
 export class Profile extends Component {
 
@@ -25,20 +26,55 @@ export class Profile extends Component {
                 <div className="form__header profile">Профиль</div>
                 <div className="form__text profile">Данные карты</div>
               </div>
-              <form className="form__input profile__input">
-                <div className="form__input-container">
-                  <div className="column">
-                  <span className="mc-icon"><img className="mc-img" src={mc} alt="MC"/></span>
-                    <TextField id="standard-basic" name="cardNumber" label="Номер карты" className="input"/>
-                    <TextField id="date" name="expiryDate" format="MM/yy" label="Дейстителен до" type="date" className="input" InputLabelProps={{shrink: true}}/>
-                  </div>
-                  <div className="column">
-                    <TextField id="standard-basic" name="cardName" label="Имя владельца" className="input"/>
-                    <TextField id="standard-basic" name="cvc" label="CVC" className="input"/>
-                  </div>
-                </div>
-                <Link to="map" className="button">Построить маршрут</Link>
-              </form>
+              <Formik initialValues={{email:"", password: ""}}
+                validate={values => {
+                    const errors = {};
+                    if (!values.cardNumber) {
+                      errors.cardNumber  = '* Email required';
+                    }
+
+                    if (!values.expiryDate) {
+                        errors.expiryDate = '* Expiry date required';
+                    }
+
+                    if (!values.cardName) {
+                        errors.cardName = '* Name required';
+                    } 
+
+                    if (!values.cvc) {
+                        errors.cvc = '* CVC required';
+                    }   
+
+                    return errors;
+                }}
+              >
+                {({ values, errors, touched, handleChange, handleBlur }) => (
+                  <form className="form__input profile__input">
+                    <div className="form__input-container">
+                      <div className="column">
+                      <span className="mc-icon"><img className="mc-img" src={mc} alt="MC"/></span>
+
+                        <TextField id="standard-basic" name="cardNumber" onChange={handleChange} onBlur={handleBlur} value={values.cardNumber} label="Номер карты" className="input"/>
+                        {touched.cardNumber && errors.cardNumber && <div className="errors">{errors.cardNumber}</div>}
+
+                        <TextField id="date" name="expiryDate" onChange={handleChange} onBlur={handleBlur} value={values.expiryDate} label="Дейстителен до" type="date" className="input" InputLabelProps={{shrink: true}}/>
+                        {touched.expiryDate && errors.expiryDate && <div className="errors">{errors.expiryDate}</div>}
+
+                      </div>
+                      <div className="column">
+
+                        <TextField id="standard-basic" name="cardName" onChange={handleChange} onBlur={handleBlur} value={values.cardName} label="Имя владельца" className="input"/>
+                        {touched.cardName && errors.cardName && <div className="errors">{errors.cardName}</div>}
+
+                        <TextField id="standard-basic" name="cvc" onChange={handleChange} onBlur={handleBlur} value={values.cvc} label="CVC" className="input"/>
+                        {touched.cvc && errors.cvc && <div className="errors">{errors.cvc}</div>}
+
+                      </div>
+                    </div>
+                    <Link to="map" className="button">Построить маршрут</Link>
+                  </form>
+                )}
+              </Formik>
             </div>
           </div>
         </div>
@@ -81,24 +117,3 @@ export const ProfileWithConnect = connect(
   (state) => ({cardAdded: state.card.cardAdded}),
   {addBankCard}
 )(Profile);
-
-
-
-{/* <div data-testid="profile" className="container"> 
-<div className="login">
-  <div className="form">
-    <div className="profile__content">
-    <div className="form__header profile">Спасибо!</div>
-
-    </div>
-    <form className="form__input profile__input">
-      <div className="form__input-container">
-        <div>
-          Ваши платежные данные сохранены
-        </div>
-      </div>
-      <Link to="map" className="button">Построить маршрут</Link>
-    </form>
-  </div>
-</div>
-</div> */}

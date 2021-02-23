@@ -42,11 +42,11 @@ export const route = async (address1, address2) => {
   return axios(
     'http://loft-taxi.glitch.me/route', {
       method: 'GET',
-      data: {
+      params: {
         address1: address1,
         address2: address2,
       },
-    }).then((response) => response.data);
+    }).then((response) => response.data.address1);
 };
 
 export const addressList = async () => {

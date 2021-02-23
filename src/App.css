@@ -166,8 +166,6 @@
 
 .input:focus {
   outline: transparent;
-  color: red;
-  border-bottom: 1px solid red;
 }
 
 .column {
@@ -186,4 +184,16 @@
 
 .mc-img {
   width: 32px;
+}
+
+
+.MuiMenu-list {
+  display: block;
+}
+
+.errors {
+  color: red;
+  font-size: small;
+  font-style: italic;
+  margin-bottom: 5%;
 }
