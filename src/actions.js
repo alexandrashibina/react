@@ -24,12 +24,11 @@ export const registerUser = (email, password, name, surname) => ({
   payload: {email, password, name, surname},
 });
 
-export const getAddressList = () => ({
-  type: ADDRESS_LIST, 
-  payload: {},
-});
-
 export const getRoute = (address1, address2) => ({
   type: ROUTE, 
   payload: {address1, address2},
+});
+
+export const getAddressList = () => ({
+  type: ADDRESS_LIST,
 });

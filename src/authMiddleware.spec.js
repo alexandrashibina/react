@@ -17,7 +17,7 @@ describe('authMiddleware', () => {
         authenticate("testlogin", "testpassword")
       );
       expect(serverLogin).toBeCalledWith("testlogin", "testpassword");
-      expect(dispatch).toBeCalledWith({type: "LOG_IN"});
+      expect(dispatch).toBeCalledWith({type: "LOG_IN",});
     });
   });
 
@@ -32,5 +32,4 @@ describe('authMiddleware', () => {
       expect(dispatch).not.toBeCalled();
     });
   });
-
 });

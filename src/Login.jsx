@@ -7,16 +7,6 @@ import { Link } from 'react-router-dom';
 import { Formik } from 'formik';
 
 export class Login extends Component {
-    state = {
-        values: {
-          email: "",
-          password: "",
-        },
-        errors: {
-          email: "",
-          password: "",
-        },
-      };
 
     authenticate = (event) => {
         event.preventDefault();
@@ -44,30 +34,36 @@ export class Login extends Component {
                                     <Link to="/reg" className="form__link">Зарегистрируйтесь</Link>
                                 </div>
                                 <Formik
+                                    initialValues={{email:"", password: ""}}
                                     validate={values => {
-                                        const errors = {
-                                            email: '',
-                                            password: '',
-                                        };
-                                        if(!values.email.includes('@')){
-                                            errors.email = 'invalid email';
+                                        const errors = {};
+                                        if (!values.email) {
+                                          errors.email  = '* Email required';
+                                        } else if (
+                                          !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+                                        ) {
+                                          errors.email = '* Invalid email address';
                                         }
+
+                                        if (!values.password) {
+                                            errors.password = '* Password required';
+                                        }                                        
                                         return errors;
                                     }}
-                                    render={({touched, errors}) => {
-                                        return (
-                                            <form onSubmit={this.authenticate} className="form__input">
-                                                <label htmlFor="email">Email:</label>
-                                                <input id="email" className="input" type="email" name="email" size="28" placeholder="Имя пользователя"/>
-                                                {touched.email && errors.email && <div>{errors.email}</div>}
-                                                <label htmlFor="password">Password:</label>
-                                                <input id="password" className="input" type="password" name="password" size="28" placeholder="Пароль"/>                      
-                                                {touched.password && errors.password && (<div>{errors.password}</div>)}
-                                                <button type="submit" className="button">Войти</button>
-                                            </form>
-                                        );
-                                    }}
-                                />
+                                >
+                                    {({ values, errors, touched, handleChange, handleBlur }) => (
+                                        <form onSubmit={this.authenticate} className="form__input">
+                                            <label htmlFor="email">Email:</label>
+                                            <input id="email" className="input" type="email" name="email" onChange={handleChange} onBlur={handleBlur} value={values.email} size="28" placeholder="Имя пользователя"/>
+                                            {touched.email && errors.email && <div className="errors">{errors.email}</div>}
+                                            <label htmlFor="password">Password:</label>
+                                            <input id="password" className="input" type="password" name="password" onChange={handleChange} onBlur={handleBlur} value={values.password} size="28" placeholder="Пароль"/>                      
+                                            {touched.password && errors.password && (<div className="errors">{errors.password}</div>)}
+                                            <button type="submit" className="button">Войти</button>
+                                        
+                                        </form>
+                                    )}
+                                </Formik>
                             </div>
                         </div>
                     </div>
