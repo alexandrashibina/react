@@ -1,13 +1,11 @@
-import {ADDRESS_LIST} from '../actions';
+import {SAVE_ADDRESS_LIST} from '../actions';
 
-const initialState = {
-  addressList: false
-};
+const initialState = [];
 
-export default function (state = initialState, action) {
+export default function addressListReducer (state = initialState, action) {
   switch (action.type) {
-    case ADDRESS_LIST: {
-      return {addressList: true, ...action.payload}
+    case SAVE_ADDRESS_LIST: {
+      return action.payload;
     }
     default:
       return state

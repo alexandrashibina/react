@@ -8,57 +8,28 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import {getAddressList} from './actions';
+import {getAddressList, getRoute} from './actions';
 
-const coordinates =
-    [
-        [30.296064,59.926102],
-        [30.295998,59.926178],
-        [30.296774,59.926144],
-        [30.299091,59.923546],
-        [30.286839,59.920956],
-        [30.279137,59.916134],
-        [30.27503,59.908867],
-        [30.25832,59.909126],
-        [30.252645,59.904724],
-        [30.247093,59.904057],
-        [30.240889,59.894974],
-        [30.245876,59.893478],
-        [30.256395,59.887089],
-        [30.289454,59.880245],
-        [30.294506,59.877121],
-        [30.290562,59.852345],
-        [30.280144,59.835918],
-        [30.275133,59.833431],
-        [30.278881,59.834045],
-        [30.31538,59.814285],
-        [30.323488,59.808533],
-        [30.324347,59.793816],
-        [30.317898,59.790894],
-        [30.280516,59.797192],
-        [30.275146,59.800365],
-        [30.274046,59.800365],
-        [30.272182,59.800652],
-]; //запрашивать координаты с сервера
 
 export class Map extends Component {
   map = null;
   mapContainer = React.createRef();
 
-  handleAddressList = () => {
-    this.props.getAddressList();
-  };
+  state = {}
 
+  handleFirstChange (event) {
+    this.setState({firstAddress: event.target.value})
+  }
 
-  handleChange () {
-    
+  handleSecondChange (event) {
+    this.setState({secondAddress: event.target.value})
   }
 
   handleRoute(event) {
     event.preventDefault();
-    const { address1, address2 } = event.target;
-    this.props.getRoute(address1.value, address2.value);
-    drawRoute(this.map, coordinates); 
+    const { firstAddress, secondAddress } = this.state;
+    this.props.getRoute(firstAddress, secondAddress);
+    //drawRoute(this.map, coordinates)
   }
 
   componentDidMount() {
@@ -70,6 +41,12 @@ export class Map extends Component {
       center: [30.3056504, 59.9429126],
       zoom: 10,
     });
+
+    this.props.getAddressList();
+  }
+
+  getDerivedStateFromState(newProps) {
+
   }
 
   componentWillUnmount() {
@@ -77,28 +54,35 @@ export class Map extends Component {
   }
 
   render() {
+    const {addresses} = this.props;
+    const {firstAddress, secondAddress} = this.state;
     return (
     <div className="map-wrapper">
       <div data-testid="map" className="map" ref={this.mapContainer}></div>
       <div className="block">
-        {this.props.cardAdded ? (
+        {this.props.cardAdded ? ( 
           <div className="block__text">
             <div className="block__text-header">Выберите маршрут</div>
-              <form onSubmit={this.handleRoute}>
+              <form onSubmit={this.handleRoute.bind(this)}>
                 <FormControl>
                   <InputLabel name="address1">Откуда?</InputLabel>
-                  <Select onChange={this.handleChange}>
-                  <MenuItem>{this.handleAddressList}</MenuItem>
+                  <Select onChange={this.handleFirstChange.bind(this)} value={firstAddress}>
+                    {addresses && addresses.filter(item => item !== secondAddress).map(address=> (
+                      <MenuItem key={address} value={address}>{address}</MenuItem>
+                    ))}
                   </Select>
                 </FormControl>
                 <FormControl>
                   <InputLabel name="address2">Куда?</InputLabel>
-                  <Select>
+                  <Select onChange={this.handleSecondChange.bind(this)} value={secondAddress}>
+                    {addresses && addresses.filter(item => item !== firstAddress).map(address=> (
+                      <MenuItem key={address} value={address}>{address}</MenuItem>
+                    ))}
                   </Select>
                 </FormControl>
                 <button type="submit" className="button map-btn">Построить маршрут</button>
               </form>
-          </div>
+          </div> 
         ) : (
           <div className="block__text">
             <div className="block__text-header">Заполните платежные данные</div>
@@ -117,6 +101,6 @@ Map.propTypes = {
 };
 
 export const MapWithConnect = connect(
-  (state) => ({cardAdded: state.card.cardAdded}),
-  {getAddressList}
+  (state) => ({cardAdded: state.card.cardAdded, addresses: state.addresses, routes: state.routes}),
+  {getAddressList, getRoute}
   )(Map);

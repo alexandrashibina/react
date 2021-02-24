@@ -1,6 +1,5 @@
 import React from "react";
 import { Map } from "./Map";
-import { App } from "./App";
 import { render } from "@testing-library/react";
 import mapboxgl from "mapbox-gl";
 import { createMemoryHistory } from "history";
@@ -11,9 +10,9 @@ jest.mock("mapbox-gl", () => ({
     Map: jest.fn(() => ({ remove: () => {} })),
   }));
 
+
 describe("Map", () => {
     test("renders correctly", () => {
-        
         const mockStore = {
             getState: () => {},
             subscribe: () => {},

@@ -1,7 +1,7 @@
 import { addressListSaga, addressSaga } from './addressListSaga';
 import { takeEvery } from 'redux-saga/effects';
 
-jest.mock("../api", () => ({addressList: jest.fn(() => true) }));
+jest.mock("../api", () => ({fetchAddressList: jest.fn(() => true) }));
 
 
 describe ('paymentSaga', () => {
