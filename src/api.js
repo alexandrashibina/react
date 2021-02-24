@@ -49,7 +49,7 @@ export const route = async (address1, address2) => {
     }).then((response) => response.data.address1);
 };
 
-export const addressList = async () => {
+export const fetchAddressList = async () => {
   return axios({
     method: 'get',
     url:'http://loft-taxi.glitch.me/addressList'

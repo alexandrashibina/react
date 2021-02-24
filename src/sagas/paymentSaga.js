@@ -5,9 +5,9 @@ import {takeEvery, call, put} from 'redux-saga/effects';
 
 export function* savePaymentSaga(action) {
     const {cardNumber, expiryDate, cardName, cvc} = action.payload;
-    const success = yield call(saveBankCard, cardNumber, expiryDate, cardName, cvc)
-    if (success) {
-        yield put(addBankCard())
+    const data = yield call(saveBankCard, cardNumber, expiryDate, cardName, cvc)
+    if (data.success) {
+        yield put(addBankCard(data))
     }
 }
 

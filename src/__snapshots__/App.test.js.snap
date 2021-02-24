@@ -1,10 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-<<<<<<< HEAD
-exports[`App component renders correctly 1`] = `
-=======
 exports[`App renders correctly 1`] = `
->>>>>>> feat/week-3
 <div
   className="wrapper"
 >
@@ -12,10 +8,6 @@ exports[`App renders correctly 1`] = `
     <header
       className="header"
       data-testid="header"
-<<<<<<< HEAD
-=======
-      id="header"
->>>>>>> feat/week-3
     >
       <div
         className="header__logo"
@@ -31,30 +23,6 @@ exports[`App renders correctly 1`] = `
       >
         <ul>
           <li>
-<<<<<<< HEAD
-            <button
-              className="header__menu-item"
-              onClick={[Function]}
-            >
-              Карта
-            </button>
-          </li>
-          <li>
-            <button
-              className="header__menu-item"
-              onClick={[Function]}
-            >
-              Профиль
-            </button>
-          </li>
-          <li>
-            <button
-              className="header__menu-item"
-              onClick={[Function]}
-            >
-              Выйти
-            </button>
-=======
             <a
               className="header__menu-item"
               href="/map"
@@ -80,7 +48,6 @@ exports[`App renders correctly 1`] = `
             >
               Выйти
             </a>
->>>>>>> feat/week-3
           </li>
         </ul>
       </nav>
@@ -88,42 +55,6 @@ exports[`App renders correctly 1`] = `
   </div>
   <main>
     <section>
-<<<<<<< HEAD
-      <div>
-        <div
-          className="block"
-        >
-          <div
-            className="block__text"
-          >
-            <div
-              className="block__text-header"
-            >
-              Заполните платежные данные
-            </div>
-            <div
-              className="block__text-content"
-            >
-              Укажите информацию о банковской карте, чтобы сделать заказ.
-            </div>
-            <button
-              className="button"
-              onClick={[Function]}
-            >
-              Перейти в профиль
-            </button>
-          </div>
-        </div>
-        <div
-          className="map-wrapper"
-        >
-          <div
-            className="map"
-            data-testid="map"
-          />
-        </div>
-      </div>
-=======
       <p>
         You are logged in. 
         <a
@@ -133,7 +64,6 @@ exports[`App renders correctly 1`] = `
           Go to profile
         </a>
       </p>
->>>>>>> feat/week-3
     </section>
   </main>
 </div>
