@@ -29,7 +29,6 @@ export class Map extends Component {
     event.preventDefault();
     const { firstAddress, secondAddress } = this.state;
     this.props.getRoute(firstAddress, secondAddress);
-    //drawRoute(this.map, coordinates)
   }
 
   componentDidMount() {
@@ -46,6 +45,9 @@ export class Map extends Component {
   }
 
   getDerivedStateFromState(newProps) {
+    if (newProps.routes) {
+      drawRoute(newProps.routes);
+    }
 
   }
 
