@@ -5,6 +5,7 @@ import logo from './logo.svg'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom';
 import { Formik } from 'formik';
+import TextField from '@material-ui/core/TextField';
 
 export class RegForm extends Component {
 
@@ -59,17 +60,20 @@ export class RegForm extends Component {
                                     {({ values, errors, touched, handleChange, handleBlur }) => (
                                         <form onSubmit={this.registerUser} className="form__input">
                                             <label htmlFor="email">Email:</label>
-                                            <input id="email" className="input" type="email" name="email" onChange={handleChange} onBlur={handleBlur} value={values.email} size="28" placeholder="Имя пользователя"/>
-                                            {touched.email && errors.email && <div className="errors">{errors.email}</div>}
+                                            <TextField id="email" className="input" type="email" name="email" onChange={handleChange} onBlur={handleBlur} value={values.email} size="28" placeholder="Имя пользователя"
+                                            {...(touched.email && errors.email ? {helperText: errors.email, error: true} : {})}/>
+
                                             <label htmlFor="password">Password:</label>
-                                            <input id="password" className="input" type="password" name="password" onChange={handleChange} onBlur={handleBlur} value={values.password} size="28" placeholder="Пароль"/>                      
-                                            {touched.password && errors.password && (<div className="errors">{errors.password}</div>)}
+                                            <TextField id="password" className="input" type="password" name="password" onChange={handleChange} onBlur={handleBlur} value={values.password} size="28" placeholder="Пароль"
+                                            {...(touched.password && errors.password ? {helperText: errors.password, error: true} : {})}/>  
+
                                             <label htmlFor="name">Name:</label>
-                                            <input id="name" className="input" type="text" name="name" onChange={handleChange} onBlur={handleBlur} value={values.name} size="28" placeholder="Имя"/>                      
-                                            {touched.name && errors.name && (<div className="errors">{errors.name}</div>)}
+                                            <TextField id="name" className="input" type="text" name="name" onChange={handleChange} onBlur={handleBlur} value={values.name} size="28" placeholder="Имя"
+                                            {...(touched.name && errors.name ? {helperText: errors.name, error: true} : {})}/>
+
                                             <label htmlFor="surname">Surname:</label>
-                                            <input id="surname" className="input" type="text" name="surname" onChange={handleChange} onBlur={handleBlur} value={values.surname} size="28" placeholder="Фамилия"/>                      
-                                            {touched.surname && errors.surname && (<div className="errors">{errors.surname}</div>)}
+                                            <TextField id="surname" className="input" type="text" name="surname" onChange={handleChange} onBlur={handleBlur} value={values.surname} size="28" placeholder="Фамилия"
+                                            {...(touched.surname && errors.surname ? {helperText: errors.surname, error: true} : {})}/>
                                             
                                             <button type="submit" className="button">Зарегистрироваться</button>
                                         </form>

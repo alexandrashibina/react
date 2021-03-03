@@ -5,11 +5,11 @@ import mapboxgl from "mapbox-gl";
 import { createMemoryHistory } from "history";
 import { Router } from "react-router-dom";
 import { Provider } from "react-redux";
+import {getAddressList} from './actions';
 
 jest.mock("mapbox-gl", () => ({
     Map: jest.fn(() => ({ remove: () => {} })),
-  }));
-
+}));
 
 describe("Map", () => {
     test("renders correctly", () => {

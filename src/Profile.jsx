@@ -54,20 +54,20 @@ export class Profile extends Component {
                       <div className="column">
                       <span className="mc-icon"><img className="mc-img" src={mc} alt="MC"/></span>
 
-                        <TextField id="standard-basic" name="cardNumber" onChange={handleChange} onBlur={handleBlur} value={values.cardNumber} label="Номер карты" className="input"/>
-                        {touched.cardNumber && errors.cardNumber && <div className="errors">{errors.cardNumber}</div>}
+                        <TextField id="standard-basic" name="cardNumber" onChange={handleChange} onBlur={handleBlur} value={values.cardNumber} label="Номер карты" className="input"
+                        {...(touched.cardNumber && errors.cardNumber ? {helperText: errors.cardNumber, error: true} : {})}/>
 
-                        <TextField id="date" name="expiryDate" onChange={handleChange} onBlur={handleBlur} value={values.expiryDate} label="Дейстителен до" type="date" className="input" InputLabelProps={{shrink: true}}/>
-                        {touched.expiryDate && errors.expiryDate && <div className="errors">{errors.expiryDate}</div>}
+                        <TextField id="date" name="expiryDate" onChange={handleChange} onBlur={handleBlur} value={values.expiryDate} label="Дейстителен до" type="date" className="input" InputLabelProps={{shrink: true}}
+                        {...(touched.expiryDate && errors.expiryDate ? {helperText: errors.expiryDate, error: true} : {})}/>
 
                       </div>
                       <div className="column">
 
-                        <TextField id="standard-basic" name="cardName" onChange={handleChange} onBlur={handleBlur} value={values.cardName} label="Имя владельца" className="input"/>
-                        {touched.cardName && errors.cardName && <div className="errors">{errors.cardName}</div>}
+                        <TextField id="standard-basic" name="cardName" onChange={handleChange} onBlur={handleBlur} value={values.cardName} label="Имя владельца" className="input"
+                        {...(touched.cardName && errors.cardName ? {helperText: errors.cardName, error: true} : {})}/>
 
-                        <TextField id="standard-basic" name="cvc" onChange={handleChange} onBlur={handleBlur} value={values.cvc} label="CVC" className="input"/>
-                        {touched.cvc && errors.cvc && <div className="errors">{errors.cvc}</div>}
+                        <TextField id="standard-basic" name="cvc" onChange={handleChange} onBlur={handleBlur} value={values.cvc} label="CVC" className="input"
+                        {...(touched.cvc && errors.cvc ? {helperText: errors.cvc, error: true} : {})}/>
 
                       </div>
                     </div>

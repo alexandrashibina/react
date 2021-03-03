@@ -46,7 +46,7 @@ export const route = async (address1, address2) => {
         address1: address1,
         address2: address2,
       },
-    }).then((response) => response.data.address1);
+    }).then((response) => response.data);
 };
 
 export const fetchAddressList = async () => {

@@ -41,14 +41,13 @@ export class Map extends Component {
       zoom: 10,
     });
 
-    this.props.getAddressList();
+    this.props.getAddressList && this.props.getAddressList();
   }
 
-  getDerivedStateFromState(newProps) {
-    if (newProps.routes) {
-      drawRoute(newProps.routes);
+  componentDidUpdate(nextProps){
+    if (nextProps.routes !== this.props.routes) {
+      drawRoute(this.map, nextProps.routes);
     }
-
   }
 
   componentWillUnmount() {
@@ -103,6 +102,6 @@ Map.propTypes = {
 };
 
 export const MapWithConnect = connect(
-  (state) => ({cardAdded: state.card.cardAdded, addresses: state.addresses, routes: state.routes}),
+  (state) => ({cardAdded: state.card.cardAdded, addresses: state.addresses, routes: state.route}),
   {getAddressList, getRoute}
   )(Map);

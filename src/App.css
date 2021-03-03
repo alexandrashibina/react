@@ -147,15 +147,16 @@
 }
 
 .MuiFormControl-root {
-  margin: 5% !important;
-  width: 80% !important;
+  margin: 5% 0 !important;
+  width: 100% !important;
 }
 
-
+.MuiInput-formControl {
+  margin-bottom: 16px;
+}
 
 .input {
   margin-bottom: 20px;
-  width: 100%;
   background-color: transparent;
   border: 0;
   border-bottom: 1px solid grey;
